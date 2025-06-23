@@ -70,7 +70,7 @@ def predict_lstm_timeseries(series):
     pred_scaled = model.predict(scaled[-3:].reshape((1, 3, 1)))
     return scaler.inverse_transform(pred_scaled)[0][0]
 
-st.markdown("<div class='section-header'>📈 진관동 비만율 LSTM 예측</div>", unsafe_allow_html=True)
+st.markdown("<div class='section-header'>📈 진관동 비만율 LSTM 예측 - 반복학습으로 인해 초기화가 이루어지는 점 참고해주세요!</div>", unsafe_allow_html=True)
 df_lstm = pd.read_csv("은평구_이상치분석결과.csv", encoding="cp949")
 obesity = df_lstm[df_lstm['항목명'] == '비만율']
 series = df_lstm.sort_values(by='기준일자')['진관동']
@@ -82,7 +82,7 @@ st.markdown("---")
 # -------------------------------
 # 3. 지도 시각화 (비만율 변화율)
 # -------------------------------
-st.markdown("<div class='section-header'>📌 비만 증가율 지도 (Folium)</div>", unsafe_allow_html=True)
+st.markdown("<div class='section-header'>📌 비만 증가율 지도 (Folium) - 마커를 클릭해보세요!</div>", unsafe_allow_html=True)
 with open("은평구_비만율_지도.html", "r", encoding="utf-8") as f:
     map_html = f.read()
 st.components.v1.html(map_html, height=600, scrolling=False)
@@ -92,7 +92,7 @@ st.markdown("---")
 # -------------------------------
 # 4. 클러스터링 지도
 # -------------------------------
-st.markdown("<div class='section-header'>📍 클러스터링 지도 시각화</div>", unsafe_allow_html=True)
+st.markdown("<div class='section-header'>📍 클러스터링 지도 시각화 - 마커를 클릭해보세요!</div>", unsafe_allow_html=True)
 cluster_df = pd.read_csv("은평구_건강지표_클러스터링.csv")
 coords = {
     "진관동": [37.6344, 126.9184], "신사제2동": [37.6026, 126.9129],
